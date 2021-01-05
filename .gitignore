@@ -1,5 +1,7 @@
 *.gem
 *.rbc
+*.lock
+library.yml
 /.config
 /coverage/
 /InstalledFiles
