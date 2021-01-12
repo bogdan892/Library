@@ -25,21 +25,16 @@ class Library
     end
   end
 
-  def get_top_reader(quantity: 1)
+  def get_top_reader(quantity = 1)
     get_top(quantity, :reader)
   end
 
-  def get_top_books(quantity: 1)
+  def get_top_books(quantity = 1)
     get_top(quantity, :book)
   end
 
-  def get_readers_of_popular_books(quantity: 3)
-    books = get_top(quantity, :book)
-
-    @orders
-      .select { |order| books.include? order.book }
-      .uniq(&:reader)
-      .length
+  def get_readers_of_popular_books(quantity = 3)
+    @orders.select { |order| get_top_books(quantity).include? order.book }.map(&:reader).uniq.size
   end
 
   def get_top(quantity, entity_name)
