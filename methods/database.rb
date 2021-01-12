@@ -2,20 +2,12 @@
 
 module Database
   PATH_FILE = 'library.yml'.to_s
-  def save_data
-    data = {
-      authors: @authors,
-      books: @books,
-      readers: @readers,
-      orders: @orders
-    }
-
+  def save_date(data)
     File.write(PATH_FILE, data.to_yaml, mode: 'a')
   end
 
   def load_data
-    data = File.exist?(PATH_FILE) ? load_library_from_seeds : generate_data
-    add_entity_to_library(data)
+    load_library_from_seeds    if File.exist?(PATH_FILE)
   end
 
   def delete_data
@@ -32,16 +24,5 @@ module Database
       [],
       true
     )
-  end
-
-  def generate_data
-    GenerateFakeData.fake_data
-  end
-
-  def add_entity_to_library(data)
-    @authors  = data[:authors]
-    @books    = data[:books]
-    @readers  = data[:readers]
-    @orders   = data[:orders]
   end
 end

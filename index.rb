@@ -4,44 +4,40 @@ require_relative 'req'
 
 library = Library.new
 library.delete_data
+authors = Array.new(35) do
+  Author.new(
+    name: Faker::Name.name, biography: Faker::Lorem.paragraph
+  )
+end
+books = Array.new(35) do
+  Book.new(
+    title: Faker::Book.title,
+    author: authors[rand(0 - 34)]
+  )
+end
 
-library.add_entity(Author.new(
-                     name: Faker::Name.name,
-                     biography: Faker::Lorem.paragraph
-                   ))
-library.add_entity(Book.new(
-                     title: Faker::Book.title,
-                     author: Author.new(
-                       name: Faker::Name.name,
-                       biography: Faker::Lorem.paragraph
-                     )
-                   ))
-library.add_entity(Reader.new(
-                     name: Faker::Name.name,
-                     email: Faker::Internet.email,
-                     city: Faker::Address.city,
-                     street: Faker::Address.street_name,
-                     house: Faker::Address.building_number.to_i
-                   ))
-library.add_entity(Order.new(
-                     book: Book.new(
-                       title: Faker::Book.title,
-                       author: Author.new(
-                         name: Faker::Name.name,
-                         biography: Faker::Lorem.paragraph
-                       )
-                     ),
-                     reader: Reader.new(
-                       name: Faker::Name.name,
-                       email: Faker::Internet.email,
-                       city: Faker::Address.city,
-                       street: Faker::Address.street_name,
-                       house: Faker::Address.building_number.to_i
-                     ),
-                     date: Date.today
-                   ))
+readers = Array.new(35) do
+  Reader.new(
+    name: Faker::Name.name,
+    email: Faker::Internet.email,
+    city: Faker::Address.city,
+    street: Faker::Address.street_name,
+    house: Faker::Address.building_number.to_i
+  )
+end
+
+orders = Array.new(70) do
+  Order.new(
+    book: books[rand(0 - 34)],
+    reader: readers[rand(0 - 34)],
+    date: Date.today
+  )
+end
+
+library.add_entity(orders)
+
 library.load_data
-library.save_data
+library.save
 
 puts("
             Top Reader: #{library.get_top_reader}

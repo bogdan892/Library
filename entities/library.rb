@@ -12,14 +12,16 @@ class Library
     @orders = orders
   end
 
-  def add_entity(entity)
-    case entity
-    when Author  then @authors << entity
-    when Book    then @books << entity
-    when Order   then @orders << entity
-    when Reader  then @readers << entity
-    else
-      raise ArgumentError
+  def add_entity(array)
+    array.each do |entity|
+      case entity
+      when Author  then @authors << entity
+      when Book    then @books << entity
+      when Order   then @orders << entity
+      when Reader  then @readers << entity
+      else
+        raise ArgumentError
+      end
     end
   end
 
@@ -47,5 +49,15 @@ class Library
              .map(&:first)
 
     quantity == 1 ? result.first : result
+  end
+
+  def save
+    data = {
+      authors: @authors,
+      books: @books,
+      readers: @readers,
+      orders: @orders
+    }
+    save_date(data)
   end
 end
