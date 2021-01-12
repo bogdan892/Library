@@ -19,6 +19,7 @@ class Order
   private
 
   def validate(date, book, reader)
+    check_empty_space(date, book, reader)
     instance?(Date, date)
     instance?(Reader, reader)
     instance?(Book, book)
