@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../req'
-
 class Reader
   include Validate
   attr_reader :name, :email, :city, :street, :house

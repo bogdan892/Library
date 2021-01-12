@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'entities/library'
+require_relative 'req'
 
 library = Library.new
 library.delete_data

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../req'
-
 class Book
   include Validate
   attr_reader :title, :author

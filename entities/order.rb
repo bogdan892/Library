@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../req'
-require 'date'
-
 class Order
   include Validate
   attr_reader :book, :reader, :date

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../req'
-
 class Library
   include Database
 
@@ -37,16 +35,16 @@ class Library
     books = get_top(quantity, :book)
 
     @orders
-        .select { |order| books.include? order.book }
-        .uniq(&:reader)
-        .length
+      .select { |order| books.include? order.book }
+      .uniq(&:reader)
+      .length
   end
 
   def get_top(quantity, entity_name)
     result = @orders
-                 .group_by(&entity_name)
-                 .max_by(quantity) { |_, orders| orders.length }
-                 .map(&:first)
+             .group_by(&entity_name)
+             .max_by(quantity) { |_, orders| orders.length }
+             .map(&:first)
 
     quantity == 1 ? result.first : result
   end
