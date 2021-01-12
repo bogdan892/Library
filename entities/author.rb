@@ -19,5 +19,6 @@ class Author
 
   def validate(*params)
     check_empty_space(*params)
+    instance?(String, *params)
   end
 end

@@ -17,7 +17,9 @@ class Book
 
   private
 
-  def validate(*params)
-    check_empty_space(params)
+  def validate(title, author)
+    check_empty_space(title, author)
+    instance?(String, title)
+    instance?(Author, author)
   end
 end

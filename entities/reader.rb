@@ -20,7 +20,9 @@ class Reader
 
   private
 
-  def validate(*params)
-    check_empty_space(*params)
+  def validate(name, email, city, street, house)
+    check_empty_space(name, email, city, street, house)
+    instance?(String, name, email, city, street)
+    positive?(house)
   end
 end

@@ -11,7 +11,10 @@ library.add_entity(Author.new(
                    ))
 library.add_entity(Book.new(
                      title: Faker::Book.title,
-                     author: @authors
+                     author: Author.new(
+                       name: Faker::Name.name,
+                       biography: Faker::Lorem.paragraph
+                     )
                    ))
 library.add_entity(Reader.new(
                      name: Faker::Name.name,
@@ -21,8 +24,20 @@ library.add_entity(Reader.new(
                      house: Faker::Address.building_number.to_i
                    ))
 library.add_entity(Order.new(
-                     book: @books,
-                     reader: @readers,
+                     book: Book.new(
+                       title: Faker::Book.title,
+                       author: Author.new(
+                         name: Faker::Name.name,
+                         biography: Faker::Lorem.paragraph
+                       )
+                     ),
+                     reader: Reader.new(
+                       name: Faker::Name.name,
+                       email: Faker::Internet.email,
+                       city: Faker::Address.city,
+                       street: Faker::Address.street_name,
+                       house: Faker::Address.building_number.to_i
+                     ),
                      date: Date.today
                    ))
 library.load_data
