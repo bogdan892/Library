@@ -3,6 +3,7 @@
 require_relative 'req'
 
 library = Library.new
+library.load_data
 library.delete_data
 authors = Array.new(35) do
   Author.new(
@@ -37,7 +38,6 @@ end
 library.add_entity(orders)
 
 library.save
-library.load_data
 puts("
             Top Reader: #{library.get_top_reader}
             Most Popular Book: #{library.get_top_books}
