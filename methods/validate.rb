@@ -15,6 +15,6 @@ module Validate
   end
 
   def positive?(num)
-    raise WrongNumber unless num.positive?
+    raise WrongNumber unless num.to_i.positive?
   end
 end
