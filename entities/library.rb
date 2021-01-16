@@ -37,15 +37,6 @@ class Library
     @orders.select { |order| get_top_books(quantity).include? order.book }.map(&:reader).uniq.size
   end
 
-  def get_top(quantity, entity_name)
-    result = @orders
-             .group_by(&entity_name)
-             .max_by(quantity) { |_, orders| orders.length }
-             .map(&:first)
-
-    quantity == 1 ? result.first : result
-  end
-
   def save
     data = {
       authors: @authors,
@@ -62,5 +53,16 @@ class Library
     @books = data[:books]
     @readers = data[:readers]
     @orders = data[:orders]
+  end
+
+  private
+
+  def get_top(quantity, entity_name)
+    result = @orders
+             .group_by(&entity_name)
+             .max_by(quantity) { |_, orders| orders.length }
+             .map(&:first)
+
+    quantity == 1 ? result.first : result
   end
 end
