@@ -6,10 +6,6 @@ module Database
     File.write(PATH_FILE, data.to_yaml, mode: 'a')
   end
 
-  def load_data
-    load_library_from_seeds    if File.exist?(PATH_FILE)
-  end
-
   def delete_data
     File.delete(PATH_FILE) if File.exist? PATH_FILE
   end
@@ -17,7 +13,7 @@ module Database
   private
 
   def load_library_from_seeds
-    yaml_file = File.read(PATH_FILE)
+    yaml_file = File.read(PATH_FILE) if File.exist? PATH_FILE
     Psych.safe_load(
       yaml_file,
       [Symbol, Date, Author, Book, Reader, Order],

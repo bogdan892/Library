@@ -36,9 +36,8 @@ end
 
 library.add_entity(orders)
 
-library.load_data
 library.save
-
+library.load_data
 puts("
             Top Reader: #{library.get_top_reader}
             Most Popular Book: #{library.get_top_books}

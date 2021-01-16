@@ -55,4 +55,12 @@ class Library
     }
     save_date(data)
   end
+
+  def load_data
+    data = load_library_from_seeds
+    @authors = data[:authors]
+    @books = data[:books]
+    @readers = data[:readers]
+    @orders = data[:orders]
+  end
 end
