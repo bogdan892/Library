@@ -2,10 +2,11 @@
 
 class Order
   include Validate
+
   attr_reader :book, :reader, :date
 
   def initialize(book:, reader:, date: Date.today)
-    validate date, book, reader
+    validate(date, book, reader)
 
     @book = book
     @reader = reader

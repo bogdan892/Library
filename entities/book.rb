@@ -2,10 +2,9 @@
 
 class Book
   include Validate
-  attr_reader :title, :author
 
   def initialize(title:, author:)
-    validate title, author
+    validate(title, author)
 
     @title = title
     @author = author
@@ -16,6 +15,8 @@ class Book
   end
 
   private
+
+  attr_reader :title, :author
 
   def validate(title, author)
     check_empty_space(title, author)
