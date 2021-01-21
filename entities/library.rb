@@ -3,8 +3,6 @@
 class Library
   include Database
 
-  attr_reader :authors, :books, :readers, :orders
-
   def initialize(authors: [], books: [], readers: [], orders: [])
     @authors = authors
     @books = books
@@ -25,16 +23,16 @@ class Library
     end
   end
 
-  def get_top_reader(quantity = 1)
+  def top_reader(quantity = 1)
     get_top(quantity, :reader)
   end
 
-  def get_top_books(quantity = 1)
+  def top_books(quantity = 1)
     get_top(quantity, :book)
   end
 
-  def get_readers_of_popular_books(quantity = 3)
-    @orders.select { |order| get_top_books(quantity).include? order.book }.map(&:reader).uniq.size
+  def readers_of_popular_books(quantity = 3)
+    @orders.select { |order| top_books(quantity).include? order.book }.map(&:reader).uniq.size
   end
 
   def save
@@ -56,6 +54,8 @@ class Library
   end
 
   private
+
+  attr_reader :authors, :books, :readers, :orders
 
   def get_top(quantity, entity_name)
     result = @orders
