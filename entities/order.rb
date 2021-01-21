@@ -13,11 +13,11 @@ class Order
     @date = date
   end
 
+  private
+
   def to_s
     "#{@book}, #{@reader}, #{@date}"
   end
-
-  private
 
   def validate(date, book, reader)
     check_empty_space(date, book, reader)

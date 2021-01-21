@@ -10,11 +10,11 @@ class Author
     @biography = biography
   end
 
+  private
+
   def to_s
     "#{@name}. #{@biography}"
   end
-
-  private
 
   attr_reader :name, :biography
 

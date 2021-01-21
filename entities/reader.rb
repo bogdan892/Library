@@ -13,11 +13,11 @@ class Reader
     @house = house
   end
 
+  private
+
   def to_s
     "#{@name}, #{@email}, #{@city}, #{@street}, #{@house}"
   end
-
-  private
 
   attr_reader :name, :email, :city, :street, :house
 
