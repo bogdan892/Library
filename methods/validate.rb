@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module Validate
-  include Errors
-
   def check_empty_space(*params)
     raise FieldError if params.empty?
   end
