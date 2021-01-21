@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Database
-  PATH_FILE = 'library.yml'.to_s
+  PATH_FILE = './storage/library.yml'.to_s
   def save_date(data)
     File.write(PATH_FILE, data.to_yaml, mode: 'a')
   end

@@ -6,10 +6,8 @@ module Validate
   end
 
   def instance?(main_class, *args)
-    args.each do |object|
-      raise WrongClass unless
-          object.instance_of?(main_class)
-    end
+    valid_objects = args.map { |object| object.is_a?(main_class) }.all?
+    raise WrongClass unless valid_objects
   end
 
   def positive?(num)
