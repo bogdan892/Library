@@ -13,12 +13,6 @@ module Database
   private
 
   def load_library_from_seeds
-    yaml_file = File.read(PATH_FILE) if File.exist? PATH_FILE
-    Psych.safe_load(
-      yaml_file,
-      [Symbol, Date, Author, Book, Reader, Order],
-      [],
-      true
-    )
+    File.file?(PATH_FILE) ? YAML.load_file(PATH_FILE) : {}
   end
 end
