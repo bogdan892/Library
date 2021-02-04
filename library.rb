@@ -3,8 +3,6 @@
 require_relative 'confiq/requirements'
 
 library = Library.new
-library.load_data
-library.delete_data
 seeds = Seeds.generate
 library.add_entity(seeds)
 library.save
