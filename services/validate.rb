@@ -3,6 +3,7 @@
 require_relative '../errors/field_error'
 require_relative '../errors/wrong_number_error'
 require_relative '../errors/wrong_class_error'
+
 module Services
   module Validate
     include Errors

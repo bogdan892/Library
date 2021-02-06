@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../services/validate'
+
 module Entities
   class Reader
     include Services::Validate

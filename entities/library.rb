@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 require_relative '../services/database'
 require_relative '../services/seeds'
+
 module Entities
   class Library
     include Services::Database
