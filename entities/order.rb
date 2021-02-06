@@ -1,28 +1,33 @@
 # frozen_string_literal: true
 
-class Order
-  include Validate
+require 'date'
+require_relative '../services/validate'
 
-  attr_reader :book, :reader, :date
+module Entities
+  class Order
+    include Services::Validate
 
-  def initialize(book:, reader:, date: Date.today)
-    validate(date, book, reader)
+    attr_reader :book, :reader, :date
 
-    @book = book
-    @reader = reader
-    @date = date
-  end
+    def initialize(book:, reader:, date: Date.today)
+      validate(date, book, reader)
 
-  private
+      @book = book
+      @reader = reader
+      @date = date
+    end
 
-  def to_s
-    "#{@book}, #{@reader}, #{@date}"
-  end
+    private
 
-  def validate(date, book, reader)
-    check_empty_space(date, book, reader)
-    instance?(Date, date)
-    instance?(Reader, reader)
-    instance?(Book, book)
+    def to_s
+      "#{@book}, #{@reader}, #{@date}"
+    end
+
+    def validate(date, book, reader)
+      check_empty_space(date, book, reader)
+      instance?(Date, date)
+      instance?(Reader, reader)
+      instance?(Book, book)
+    end
   end
 end

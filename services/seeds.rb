@@ -1,49 +1,59 @@
 # frozen_string_literal: true
 
-module Seeds
-  def self.generate
-    authors = authors_generate
-    books = books_generate(authors)
-    readers = readers_generate
-    orders_generate(books, readers)
-  end
+require 'faker'
+require_relative '../entities/author'
+require_relative '../entities/book'
+require_relative '../entities/order'
+require_relative '../entities/reader'
 
-  def self.authors_generate
-    Array.new(35) do
-      Author.new(
-        name: Faker::Name.name, biography: Faker::Lorem.paragraph
-      )
+module Services
+  module Seeds
+    module_function
+
+    def generate
+      authors = authors_generate
+      books = books_generate(authors)
+      readers = readers_generate
+      orders_generate(books, readers)
     end
-  end
 
-  def self.books_generate(authors)
-    Array.new(35) do
-      Book.new(
-        title: Faker::Book.title,
-        author: authors[rand(0 - 34)]
-      )
+    def authors_generate
+      Array.new(35) do
+        Entities::Author.new(
+          name: Faker::Name.name, biography: Faker::Lorem.paragraph
+        )
+      end
     end
-  end
 
-  def self.readers_generate
-    Array.new(35) do
-      Reader.new(
-        name: Faker::Name.name,
-        email: Faker::Internet.email,
-        city: Faker::Address.city,
-        street: Faker::Address.street_name,
-        house: Faker::Address.building_number.to_i
-      )
+    def books_generate(authors)
+      Array.new(35) do
+        Entities::Book.new(
+          title: Faker::Book.title,
+          author: authors[rand(0 - 34)]
+        )
+      end
     end
-  end
 
-  def self.orders_generate(books, readers)
-    Array.new(70) do
-      Order.new(
-        book: books[rand(0 - 34)],
-        reader: readers[rand(0 - 34)],
-        date: Date.today
-      )
+    def readers_generate
+      Array.new(35) do
+        Entities::Reader.new(
+          name: Faker::Name.name,
+          email: Faker::Internet.email,
+          city: Faker::Address.city,
+          street: Faker::Address.street_name,
+          house: Faker::Address.building_number.to_i
+        )
+      end
+    end
+
+    def orders_generate(books, readers)
+      Array.new(70) do
+        Entities::Order.new(
+          book: books[rand(0 - 34)],
+          reader: readers[rand(0 - 34)],
+          date: Date.today
+        )
+      end
     end
   end
 end

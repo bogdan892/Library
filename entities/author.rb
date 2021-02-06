@@ -1,25 +1,29 @@
 # frozen_string_literal: true
 
-class Author
-  include Validate
+require_relative '../services/validate'
 
-  def initialize(name:, biography: '')
-    validate(name, biography)
+module Entities
+  class Author
+    include Services::Validate
 
-    @name = name
-    @biography = biography
-  end
+    def initialize(name:, biography: '')
+      validate(name, biography)
 
-  private
+      @name = name
+      @biography = biography
+    end
 
-  def to_s
-    "#{@name}. #{@biography}"
-  end
+    private
 
-  attr_reader :name, :biography
+    def to_s
+      "#{@name}. #{@biography}"
+    end
 
-  def validate(*params)
-    check_empty_space(*params)
-    instance?(String, *params)
+    attr_reader :name, :biography
+
+    def validate(*params)
+      check_empty_space(*params)
+      instance?(String, *params)
+    end
   end
 end
