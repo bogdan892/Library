@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'date'
-require_relative '../services/validate'
-
 module Entities
   class Order
     include Services::Validate

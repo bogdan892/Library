@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'yaml'
-
 module Services
   module Database
     PATH_FILE = '../library_storage.yml'

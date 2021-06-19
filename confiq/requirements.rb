@@ -1,0 +1,16 @@
+# frozen_string_literal: true
+
+require 'yaml'
+require 'faker'
+require 'date'
+require_relative '../errors/field_error'
+require_relative '../errors/wrong_number_error'
+require_relative '../errors/wrong_class_error'
+require_relative '../services/database'
+require_relative '../services/validate'
+require_relative '../services/seeds'
+require_relative '../entities/author'
+require_relative '../entities/book'
+require_relative '../entities/order'
+require_relative '../entities/reader'
+require_relative '../entities/library'

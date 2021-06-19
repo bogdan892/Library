@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../services/validate'
-
 module Entities
   class Reader
     include Services::Validate
@@ -16,11 +14,11 @@ module Entities
       @house = house
     end
 
-    private
-
     def to_s
       "#{@name}, #{@email}, #{@city}, #{@street}, #{@house}"
     end
+
+    private
 
     attr_reader :name, :email, :city, :street, :house
 

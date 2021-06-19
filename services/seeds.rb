@@ -1,11 +1,5 @@
 # frozen_string_literal: true
 
-require 'faker'
-require_relative '../entities/author'
-require_relative '../entities/book'
-require_relative '../entities/order'
-require_relative '../entities/reader'
-
 module Services
   module Seeds
     module_function

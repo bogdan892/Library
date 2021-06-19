@@ -1,6 +1,4 @@
-
-require_relative '../services/database'
-require_relative '../services/seeds'
+# frozen_string_literal: true
 
 module Entities
   class Library
@@ -65,12 +63,3 @@ module Entities
     end
   end
 end
-
-library = Entities::Library.new
-seeds = Services::Seeds.generate
-library.add_entity(seeds)
-library.save
-
-puts("\nTop Reader: #{library.top_reader}
-Most Popular Book: #{library.top_books}
-Number of Readers of the Most Popular Books: #{library.readers_of_popular_books}")

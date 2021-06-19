@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../services/validate'
-
 module Entities
   class Book
     include Services::Validate
